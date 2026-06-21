@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-paper-100 text-stone-800;
+    font-family: "Inter", "Noto Sans SC", -apple-system, "PingFang SC",
+                 "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  ::selection {
+    @apply bg-ink-200 text-ink-700;
+  }
+}
+
+/* ========== 组件层 ========== */
+
+@layer components {
+  /* --- 按钮 --- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 text-sm font-medium
+           transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2
+           active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+    height: 44px;
+  }
+
+  .btn-primary {
+    @apply btn bg-ink-500 text-paper-100 hover:bg-ink-600 focus:ring-ink-300;
+  }
+
+  .btn-secondary {
+    @apply btn border border-stone-200 bg-white text-stone-700
+           hover:bg-stone-100 hover:border-stone-300 focus:ring-ink-300;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-stone-500 hover:bg-stone-100 hover:text-stone-700 focus:ring-stone-300;
+  }
+
+  .btn-success {
+    @apply btn bg-success-500 text-white hover:bg-success-600 focus:ring-success-300;
+  }
+
+  .btn-danger {
+    @apply btn bg-danger-500 text-white hover:bg-danger-600 focus:ring-danger-300;
+  }
+
+  .btn-sm {
+    height: 36px;
+    @apply px-3 text-xs;
+  }
+
+  .btn-lg {
+    height: 52px;
+    @apply px-8 text-base;
+  }
+
+  /* --- 卡片 --- */
+  .card {
+    @apply rounded-lg border border-stone-150 bg-white p-6 shadow-sm
+           transition-shadow duration-200;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-md hover:border-stone-200;
+  }
+
+  /* --- 题目卡片 --- */
+  .question-card {
+    @apply rounded-lg border bg-white shadow-sm overflow-hidden;
+  }
+
+  .question-card .q-header {
+    @apply flex items-center justify-between px-6 py-4 border-b border-stone-150;
+  }
+
+  .question-card .q-body {
+    @apply px-6 py-6;
+  }
+
+  .question-card .q-footer {
+    @apply px-6 py-4 bg-stone-50 border-t border-stone-150;
+  }
+
+  /* --- 选项按钮 --- */
+  .option-btn {
+    @apply flex w-full items-center gap-3 rounded-lg border border-stone-150 p-4 text-left text-sm
+           transition-all duration-150 cursor-pointer;
+  }
+
+  .option-btn:hover {
+    @apply border-ink-300 bg-ink-50;
+  }
+
+  .option-btn.selected {
+    @apply border-ink-500 bg-ink-50 ring-1 ring-ink-500;
+  }
+
+  .option-btn.correct {
+    @apply border-success-500 bg-success-50 ring-1 ring-success-500;
+  }
+
+  .option-btn.wrong {
+    @apply border-danger-500 bg-danger-50 ring-1 ring-danger-500;
+  }
+
+  .option-btn.disabled {
+    @apply cursor-default opacity-70;
+  }
+
+  .option-btn .opt-label {
+    @apply flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-xs font-bold;
+  }
+
+  .option-btn.selected .opt-label { @apply bg-ink-500 text-white; }
+  .option-btn.correct .opt-label  { @apply bg-success-500 text-white; }
+  .option-btn.wrong .opt-label    { @apply bg-danger-500 text-white; }
+
+  /* --- 侧边栏导航 --- */
+  .sidebar-link {
+    @apply relative flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-medium
+           text-stone-500 transition-all duration-150;
+  }
+
+  .sidebar-link:hover {
+    @apply bg-ink-50 text-ink-600;
+  }
+
+  .sidebar-link.active {
+    @apply bg-ink-50 text-ink-600 font-semibold;
+  }
+
+  .sidebar-link.active::before {
+    content: "";
+    @apply absolute left-0 top-1/2 -translate-y-1/2 h-5 w-[3px] rounded-r-md bg-ink-500;
+  }
+
+  /* --- 标签/徽章 --- */
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  .badge-green  { @apply badge bg-success-50 text-success-500; }
+  .badge-red    { @apply badge bg-danger-50 text-danger-500; }
+  .badge-yellow { @apply badge bg-warning-50 text-warning-500; }
+  .badge-blue   { @apply badge bg-info-50 text-info-500; }
+  .badge-gray   { @apply badge bg-stone-100 text-stone-500; }
+
+  /* --- 统计数字 --- */
+  .stat-value { @apply text-2xl font-bold tracking-tight text-stone-800; }
+  .stat-label { @apply text-xs font-medium text-stone-400 uppercase tracking-wider; }
+
+  /* --- 进度条 --- */
+  .progress-bar {
+    @apply h-1.5 w-full overflow-hidden rounded-full bg-stone-150;
+  }
+
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-500 ease-out;
+  }
+
+  /* --- 输入框 --- */
+  .input {
+    @apply block w-full rounded-lg border border-stone-200 bg-white px-4 py-2.5 text-sm
+           text-stone-800 placeholder-stone-300
+           transition-all duration-150
+           focus:border-ink-500 focus:ring-2 focus:ring-ink-100 focus:outline-none;
+    height: 44px;
+  }
+
+  .select {
+    @apply input appearance-none cursor-pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B6A66' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+  }
+
+  textarea.input {
+    height: auto;
+    min-height: 100px;
+  }
+
+  /* --- 解析面板 --- */
+  .explanation-panel {
+    @apply rounded-lg border-l-4 p-5 mt-4 bg-white shadow-sm;
+  }
+
+  .explanation-panel.correct { @apply border-l-success-500; }
+  .explanation-panel.wrong   { @apply border-l-danger-500; }
+
+  /* --- 欢迎区块 --- */
+  .hero-section {
+    @apply relative overflow-hidden rounded-xl bg-ink-500 p-8 text-paper-100;
+  }
+
+  .hero-section h1 {
+    @apply text-2xl font-bold tracking-tight sm:text-3xl;
+  }
+
+  .hero-section p {
+    @apply mt-2 max-w-xl text-sm text-paper-200;
+  }
+}
+
+/* ========== 动画 ========== */
+
+@layer utilities {
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.2s ease;
+  }
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+
+  .slide-enter-active,
+  .slide-leave-active {
+    transition: all 0.3s ease;
+  }
+  .slide-enter-from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  .slide-leave-to {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+
+  .slide-up-enter-active,
+  .slide-up-leave-active {
+    transition: all 0.3s ease-out;
+  }
+  .slide-up-enter-from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  /* 自定义滚动条 */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb { @apply rounded-full bg-stone-200 hover:bg-stone-300; }
+}

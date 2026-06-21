@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temp
+*.cjs
+!serve.cjs
+!fix.cjs
+*.mjs
+!vite.config.mjs
+
+# Test coverage
+coverage/
+
+# Misc
+*.tsbuildinfo
+*.local
